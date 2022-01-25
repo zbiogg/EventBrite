@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import clsx  from 'clsx';
 import style from './Browser.module.css'
 import iconHeart from '../../../assets/icons/heart.png'
