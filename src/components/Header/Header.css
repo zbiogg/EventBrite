@@ -33,12 +33,6 @@
 }
 
 .dropdown:hover .dropdown-menu{
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-
     display: block;
     margin-top: 0;
  }
@@ -65,6 +59,7 @@
     background-color: rgb(232, 232, 232);
 }
 
+/* search box */
 .search-box{
     position: fixed;
     background-color: white;
@@ -132,6 +127,39 @@
      color: rgb(64, 64, 230);
  }
 
+ /* responsive */
+ ul .mobile{
+    display: none;
+}
+@media screen and (max-width: 800px) {
+    ul .web, .search-nav{
+        display: none;
+    }
 
+    ul .mobile{
+        display: inline-block;
+    }
+    .logo-header{
+        width: 300px;
+    }
+    .search-box{
+        width: 100vh;
+    }
 
+    .dropdown-menu .create-event{
+        color: rgb(64, 64, 230); 
+    }
+
+    .search-box{
+        width: auto;
+    }
+
+    .search-input-text{
+        width: 70%;
+    }
+    .suggest{
+        padding-top: 20px;
+    }
+
+}
 
