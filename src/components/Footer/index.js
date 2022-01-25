@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './Footer.css'
 
 function Footer() {
+    
     return (
         <div>
             <footer className="site-footer">
