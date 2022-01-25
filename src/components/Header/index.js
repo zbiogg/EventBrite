@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/role-supports-aria-props */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 import  './Header.css'
 import more from '../../assets/icons/more.png'
@@ -108,7 +110,7 @@ function Header() {
             <li className="item mobile"><a><span><img role="button" onClick={showSearch} src={search} alt="" width="20px"/></span></a></li>
             <li className="item dropdown mobile">
                 <a className="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   <span><img src={more} width="20px"/></span>
+                   <span><img src={more} style={{width: 20}} alt=""/></span>
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a className="dropdown-item" href="#">Organize</a>
