@@ -118,6 +118,10 @@
 .titleResultEvent{
     color: #ED421C;
 }
-.wrapContainerSearchEvent{
-    margin: 20px 30px;
+@media screen and (min-width: 992px) {
+    .wrapContainerSearchEvent{
+        margin: 20px 70px!important;
+        width: auto!important;
+    }
 }
+
