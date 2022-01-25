@@ -60,9 +60,7 @@
     line-height: 36px;
     font-weight: 800;
 }
-.feed-header__title-bottom--seasonal {
 
-}
 @media (min-width: 800px){
     .feed-header__title{
         display: inline;

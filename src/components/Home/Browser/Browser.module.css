@@ -1,18 +1,18 @@
-.img-event{
+.imgEvent{
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
 
 }
-.wrap-image-event{
+.wrapImageEvent{
     display: flex;
     position: relative;
     height: 0;
     padding-bottom: 60%;
   
 }
-.wrap-button-favorite{
+.wrapButtonFavorite{
     cursor: pointer;
     position: absolute;
     bottom: -18px;
@@ -21,62 +21,62 @@
     border-radius: 30px;
     background-color: #fff;
 }
-.wrap-button-favorite:hover{
+.wrapButtonFavorite:hover{
     background-color: #ff9999;
 }
-.img-ctg-of-event{
+.imgCtgOfEvent{
     width: 30px;
     height: 30px;
     padding: 5px;
     background-color: #ED421C;
     border-radius: 30px;
 }
-.wrap-event-info{
+.wrapEventInfo{
     margin: 10px 0;
     padding: 15px;
     height: 160px;
 }
-.wrap-event-member, .wrap-event-location{
+.wrapEventMember, .wrapEventLocation{
  display: flex;
   align-items: center;
   column-gap: 10px;
 }
-.wrap-ctg-of-event{
+.wrapCtgOfEvent{
     display: flex;
     align-items: center;
     column-gap: 10px;
 }
-.event-ctg-name{
+.eventCtgName{
     color: #ED421C;
     font-size: 18px;
     font-weight: 500;
 }
-.event-name{
+.eventName{
     display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;  
   overflow: hidden;
     margin-top: 5px;
 }
-.item-event{
+.itemEvent{
     border: 0.5px solid #e8e8e8;
     cursor: pointer;
     /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     height: 100%;
 }
-.wrap-item-event{
+.wrapItemEvent{
     padding: 15px;
 }
-.item-event:hover{
+.itemEvent:hover{
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
-.list-category{
+.listCategory{
     display: flex;
     height: 45px;
     padding-left: 0px;
 }
-.category-item{
+.categoryItem{
     height: 100%;
     display: flex;
     align-items: center;
@@ -84,40 +84,40 @@
     list-style: none;
     cursor: pointer;
 }
-.category-name{
+.categoryName{
     padding: 0 15px;
     font-size: 16px;
     font-weight: 600;
     color: #424242;
 }
-.wrap-list-category{
+.wrapListCategory{
     margin: 0 -15px;
 }
-.category-item:hover{
+.categoryItem:hover{
     border-bottom: 2px solid #000;
 }
-.wrap-btn-see-more{
+.wrapBtnSeeMore{
     margin: 10px 0;
     display: flex;
     justify-content: center;
 }
-.btn-see-more{
+.btnSeeMore{
     border: 1px solid #424242;
     border-radius: 3px;
     padding: 8px 50px;
     font-weight: 600;
 }
-.btn-see-more:hover{
+.btnSeeMore:hover{
     background-color: aliceblue;
 }
-.hr-custom{
+.hrCustom{
     margin: 30px 0;
     height: 3px;
     background-color: #7a7979;
 }
-.title-result-event{
+.titleResultEvent{
     color: #ED421C;
 }
-.wrap-container-search-event{
+.wrapContainerSearchEvent{
     margin: 20px 30px;
 }
