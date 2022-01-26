@@ -1,10 +1,6 @@
 import style from '../../Browser/Browser.module.css'
-import { useState,useEffect} from 'react';
 import clsx from 'clsx';
 function CategoryItem(props) {
-    const [isActive, setActive] = useState(false);
-   
-   
     const selectCategory =()  =>{
             props.getActive(props.id);
         

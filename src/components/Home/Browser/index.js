@@ -8,16 +8,6 @@ import iconDown from '../../../assets/icons/arrow-down.png'
  
 
 function Browser() {
-    function getActive(id){
-        const newList = listCtg.map((ctg) => ({
-            ...ctg,
-            active: false, // just for example
-          }));
-       
-        const index = listCtg.findIndex(newList => newList.id==id);
-        newList[index].active = true;
-        setListCtg(newList);
-    }
     const [listCtg,setListCtg] = useState([{
         "id" : 0,
         "name": "All",
@@ -25,6 +15,67 @@ function Browser() {
     }]);
     const [listEventNationWide,setListEventNationWide] = useState([]);
     const [listEventCity,setListEventCity] = useState([]);
+    const [ctgActive,setCtgActive] = useState(0);
+    function getActive(id){
+        const newList = listCtg.map((ctg) => ({
+            ...ctg,
+            active: false,
+        }));
+       
+        const index = listCtg.findIndex(newList => newList.id==id);
+        newList[index].active = true;
+        setCtgActive(id);
+        getEventByCategory(id);
+        console.log(id);
+        setListCtg(newList);
+        
+    }
+    
+    function getEventByCategory(categoryID){
+        setListEventNationWide([]);
+        setListEventCity([]);
+        database.ref("Events").on("value",snapshot =>{
+            if(snapshot.val()!==null){
+                snapshot.forEach(item =>{
+                    if(item.child("type").val()==="event"){
+                        if(categoryID==0){
+                            setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
+                            if(item.child("location").val().includes("Thành phố Hà Nội")){
+                                setListEventCity(listEventCity => [...listEventCity, item.val()]);
+                            }  
+                        }else{
+                            if(item.child("category_id").val()==categoryID){
+                                setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
+                                if(item.child("location").val().includes("Thành phố Hà Nội")){
+                                    setListEventCity(listEventCity => [...listEventCity, item.val()]);
+                                }  
+                            }
+                            database.ref("Categories").on("value",snapctg =>{
+                                snapctg.forEach(ctg =>{
+                                    if(ctg.hasChild("parent_id")&&ctg.child("parent_id").val()==categoryID){
+                                        if(item.child("category_id").val()==ctg.child("id").val()){
+                                            setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
+                                            if(item.child("location").val().includes("Thành phố Hà Nội")){
+                                                setListEventCity(listEventCity => [...listEventCity, item.val()]);
+                                            }  
+                                        }
+                                  
+                                    }
+                                });
+                                
+                            });
+                        }
+                    }
+                    
+                });
+            }else{
+                setListEventNationWide([]);
+                setListEventCity([]);
+            }
+            
+        });
+    }
+    
     useEffect(() =>{
         database.ref("Categories").on("value",snapshot =>{
             if(snapshot.val()!==null){
@@ -35,20 +86,25 @@ function Browser() {
                     }
                 });
             }else{
-                setListCtg([]);
+                setListCtg([{
+                    "id" : 0,
+                    "name": "All",
+                    "active": true
+                }]);
             }
             
         });
-        console.log(listCtg);
         database.ref("Events").on("value",snapshot =>{
             if(snapshot.val()!==null){
                 snapshot.forEach(item =>{
                     if(item.child("type").val()==="event"){
-                        setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
-                        if(item.child("location").val().includes("Thành phố Hà Nội")){
-                            setListEventCity(listEventCity => [...listEventCity, item.val()]);
-                        }
+                            setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
+                            if(item.child("location").val().includes("Thành phố Hà Nội")){
+                                setListEventCity(listEventCity => [...listEventCity, item.val()]);
+                            }
+                            console.log(ctgActive);
                     }
+                    
                 });
             }else{
                 setListEventNationWide([]);
@@ -57,7 +113,11 @@ function Browser() {
             
         });
         return () =>{
-            setListCtg([]);
+            setListCtg([{
+                "id" : 0,
+                "name": "All",
+                "active": true
+            }]);
             setListEventNationWide([]);
             setListEventCity([]);
         }
@@ -68,6 +128,7 @@ function Browser() {
     return (
         <div className={clsx(style.wrapContainerSearchEvent, 'container-fluid')}>
             <div className={style.wrapPickLocation}>
+                <div>hhahaha {ctgActive}</div>
                 <span className={style.labelPickLocation}>Meetings In</span>
                 <img className={style.iconDropLocation} src={iconDown} alt="down" />
                 <div className={style.wrapOptions}>Thành phố Hà Nội</div>
@@ -89,7 +150,7 @@ function Browser() {
             </div>
             <div className={style.resultListEvent}>
                 <div className={style.resultEventLocation}>
-                    <h4 className={style.titleResultEvent}>MEETING IN LOCATION CITY</h4>
+                    <h4 className={style.titleResultEvent}>MEETING IN THÀNH PHỐ HÀ NỘI</h4>
                     <div className={clsx(style.wrapListEvent, 'row')}>
                     {Object.values(listEventCity).map((item,index) =>{
                             return (
