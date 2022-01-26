@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import {Link} from 'react-router-dom'
+import Test from './test';
 import styles from './Footer.module.css'
 
 function Footer() {
@@ -75,7 +77,7 @@ function Footer() {
 
                         <div className="col-xs-8 col-md-8">
                             <ul className={styles.EffectLink} >
-                                <li><a href="#">About</a></li>
+                                <li><Link to="/test">About</Link></li>
                                 <li><a href="#">Blog</a></li>
                                 <li><a href="#">Help</a></li>
                                 <li><a href="#">Careers</a></li>
@@ -100,7 +102,8 @@ function Footer() {
                     </div>
                 </div>
             </footer>
-        </div>
+           
+        </div>  
     );
 }
 
