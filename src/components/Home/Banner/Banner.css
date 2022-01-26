@@ -21,10 +21,11 @@
     padding-bottom: 12px;
     margin-top: 24px;
     height: 316px;
+    margin-bottom: 20px;
 }
 .feed-header__bg-box{
     position: absolute;
-    top: 40%;
+    top: 30%;
     background-color: #F6F7FD;
     width: 95%;
     height: 80%;
