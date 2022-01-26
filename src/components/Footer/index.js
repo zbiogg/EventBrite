@@ -1,14 +1,16 @@
-import './Footer.css'
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import styles from './Footer.module.css'
 
 function Footer() {
     return (
         <div>
-            <footer className="site-footer">
+            <footer className={styles.siteFooter}>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-sm-3 col-md-3">
                             <h6>Use Eventbrite</h6>
-                            <ul className="footer-links">
+                            <ul className={styles.footerLinks}>
                                 <li><a href="#">How It Works</a></li>
                                 <li><a href="#">Pricing</a></li>
                                 <li><a href="#">Eventbrite Mobile App</a></li>
@@ -24,7 +26,7 @@ function Footer() {
 
                         <div className="col-xs-3 col-md-3">
                             <h6>Plan Events</h6>
-                            <ul className="footer-links">
+                            <ul className={styles.footerLinks}>
                                 <li><a href="#">Conferences</a></li>
                                 <li><a href="#">classNamees & Workshops</a></li>
                                 <li><a href="#">Nonprofits & Fundraisers</a></li>
@@ -39,7 +41,7 @@ function Footer() {
 
                         <div className="col-xs-3 col-md-3">
                             <h6>Find Events</h6>
-                            <ul className="footer-links">
+                            <ul className={styles.footerLinks}>
                                 <li><a href="#">Things to do in Toronto</a></li>
                                 <li><a href="#">Things to do in Vancouver</a></li>
                                 <li><a href="#">Things to do in Calgary</a></li>
@@ -54,7 +56,7 @@ function Footer() {
                         </div>
                         <div className="col-xs-3 col-md-3">
                             <h6>Connect With Us</h6>
-                            <ul className="footer-links">
+                            <ul className={styles.footerLinks}>
                                 <li><a href="#">Contact Support</a></li>
                                 <li><a href="#">Twitter</a></li>
                                 <li><a href="#">Facebook</a></li>
@@ -72,7 +74,7 @@ function Footer() {
                         </div>
 
                         <div className="col-xs-8 col-md-8">
-                            <ul className="v-effect-link" >
+                            <ul className={styles.EffectLink} >
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Blog</a></li>
                                 <li><a href="#">Help</a></li>
