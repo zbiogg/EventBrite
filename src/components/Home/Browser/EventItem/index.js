@@ -6,10 +6,11 @@ import iconLocation from '../../../../assets/icons/location.png'
 import imgBgEvent from '../../../../assets/img/bgEvent.png'
 import { useState,useEffect} from 'react';
 import {storage,database} from '../../../../lib/firebase'
+
 function EventItem(props) {
     const [image, setImage] = useState(imgBgEvent);
-    const [imageCtg, setImageCtg] = useState(imgBgEvent);
-    const [colorCtg, setColorCtg] = useState('#f00');
+    const [imageCtg, setImageCtg] = useState(iconHeart);
+    const [colorCtg, setColorCtg] = useState('');
     useEffect(() =>{
         storage.ref("event")
         .child(props.id)
@@ -23,7 +24,7 @@ function EventItem(props) {
         database.ref("Categories").on("value",snapshot =>{
             if(snapshot.val()!==null){
                 snapshot.forEach(item =>{
-                    if(item.child("id").val()==props.categoryID){
+                    if(item.child("id").val().toString()===props.categoryID){
                         var ctgOriginID;
                         if(item.hasChild("parent_id")){
                             ctgOriginID = item.child("parent_id").val();
@@ -48,7 +49,7 @@ function EventItem(props) {
             setImage('');
             setImageCtg('')
         } 
-    },[]);
+    },[props.id,props.categoryID,props.image]);
     return (
         <div className={clsx(style.wrapItemEvent, 'col-sm-6 col-lg-4 col-xl-3')}>
             <div className={style.itemEvent}>
@@ -56,6 +57,7 @@ function EventItem(props) {
                     <img className={style.imgEvent}
                         src={image} alt="imgEvent"
                     />
+                   
                     <span className={style.wrapButtonFavorite}>
                         <img src={iconHeart} width="24px" height="24px" alt="favorite"/>
                     </span>
@@ -69,7 +71,7 @@ function EventItem(props) {
                             src = {imageCtg}
                             width="100%" height="100%" alt="ctgImg"/>
 
-                        <span className={style.eventCtgName}>
+                        <span className={style.eventCtgName} style={{color: colorCtg}}>
                             Game
                         </span>
                     </div>

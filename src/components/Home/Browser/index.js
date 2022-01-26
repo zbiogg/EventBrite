@@ -4,10 +4,25 @@ import CategoryItem from './CategoryItem'
 import EventItem from './EventItem'
 import {database} from '../../../lib/firebase'
 import { useState,useEffect} from 'react';
+import iconDown from '../../../assets/icons/arrow-down.png'
  
 
 function Browser() {
-    const [listCtg,setListCtg] = useState([]);
+    function getActive(id){
+        const newList = listCtg.map((ctg) => ({
+            ...ctg,
+            active: false, // just for example
+          }));
+       
+        const index = listCtg.findIndex(newList => newList.id==id);
+        newList[index].active = true;
+        setListCtg(newList);
+    }
+    const [listCtg,setListCtg] = useState([{
+        "id" : 0,
+        "name": "All",
+        "active": true
+    }]);
     const [listEventNationWide,setListEventNationWide] = useState([]);
     const [listEventCity,setListEventCity] = useState([]);
     useEffect(() =>{
@@ -15,7 +30,7 @@ function Browser() {
             if(snapshot.val()!==null){
                 snapshot.forEach(item =>{
                     if(!item.hasChild("parent_id")){
-                        setListCtg(listCtg =>[...listCtg, item.val()]);
+                        setListCtg(listCtg =>[...listCtg, {...item.val(),'active':false}]);
                   
                     }
                 });
@@ -24,6 +39,7 @@ function Browser() {
             }
             
         });
+        console.log(listCtg);
         database.ref("Events").on("value",snapshot =>{
             if(snapshot.val()!==null){
                 snapshot.forEach(item =>{
@@ -51,10 +67,22 @@ function Browser() {
   
     return (
         <div className={clsx(style.wrapContainerSearchEvent, 'container-fluid')}>
+            <div className={style.wrapPickLocation}>
+                <span className={style.labelPickLocation}>Meetings In</span>
+                <img className={style.iconDropLocation} src={iconDown} alt="down" />
+                <div className={style.wrapOptions}>Thành phố Hà Nội</div>
+            </div>
             <div className={style.wrapListCategory}>
                 <ul className={style.listCategory}>
                     {Object.values(listCtg).map((item,index) =>{
-                        return <CategoryItem name ={item.name} color={item.color} key={index}/>
+                        return <CategoryItem 
+                        name ={item.name} 
+                        id={item.id} 
+                        color={item.color} 
+                        key={index}
+                        getActive ={getActive.bind(item.id)}
+                        active = {item.active}
+                        />
                     })}
                 </ul>
                 

@@ -6,6 +6,12 @@
     object-fit: cover;
 
 }
+.wrapImageEvent >img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .wrapImageEvent{
     display: flex;
     position: relative;
@@ -58,6 +64,7 @@
   -webkit-box-orient: vertical;  
   overflow: hidden;
     margin-top: 5px;
+    line-height: 1.6;
 }
 .itemEvent{
     border: 0.5px solid #e8e8e8;
@@ -76,27 +83,34 @@
     display: flex;
     height: 45px;
     padding-left: 0px;
+    margin: 20px 0;
+    overflow-x: auto;
+    column-gap: 10px;
 }
 .categoryItem{
     height: 100%;
     display: flex;
     align-items: center;
-    border-bottom: 2px;
     list-style: none;
     cursor: pointer;
 }
 .categoryName{
-    padding: 0 15px;
+    display: flex;
+    padding: 0 18px;
     font-size: 16px;
     font-weight: 600;
-    color: #424242;
+    color: #222222;
+    height: 100%;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #e8e8e8;
 }
-.wrapListCategory{
-    margin: 0 -15px;
+
+.categoryName:hover{
+    color: #fff;
+    background-color: #000;
 }
-.categoryItem:hover{
-    border-bottom: 2px solid #000;
-}
+
 .wrapBtnSeeMore{
     margin: 10px 0;
     display: flex;
@@ -124,5 +138,32 @@
         margin: 20px 70px!important;
         width: auto!important;
     }
+}
+.wrapPickLocation{
+    display: flex;
+    align-items: center;
+}
+.labelPickLocation{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(85, 85, 255);
+    text-transform: uppercase;
+}
+.wrapOptions{
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid #7a7979;
+}
+.iconDropLocation{
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0 5px 0 15px;
+    
+}
+
+.ctgActive{
+    background-color: #000;
+    color: #fff;
 }
 
