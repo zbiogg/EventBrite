@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/role-supports-aria-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import './bootstrap-menu-hover.css'
 import clsx from 'clsx';
 import style from './Header.module.css'
 import more from '../../assets/icons/more.png'

@@ -1,0 +1,8 @@
+.dropdown:hover .dropdown-menu{
+    display: block;
+    margin-top: 0;
+ }
+
+ .dropdown-menu .createEvent{
+    color: rgb(64, 64, 230); 
+}

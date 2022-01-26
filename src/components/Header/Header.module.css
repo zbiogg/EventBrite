@@ -33,10 +33,10 @@
     display: flex;
 }
 
-.dropdown:hover .dropdownMenu{
+/* .dropdown:hover .dropdownMenu{
     display: block;
     margin-top: 0;
- }
+ } */
 
 .item{
     margin-right: 20px;
@@ -147,9 +147,9 @@
         width: 100vh;
     }
 
-    .dropdownMenu .createEvent{
+    /* .dropdownMenu .createEvent{
         color: rgb(64, 64, 230); 
-    }
+    } */
 
     .searchBox{
         width: auto;
