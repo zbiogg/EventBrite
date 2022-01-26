@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/eventbrite/static/css/main.58d6cab1.css",
-    "main.js": "/eventbrite/static/js/main.d823ec6a.js",
-    "static/js/787.7d3007fd.chunk.js": "/eventbrite/static/js/787.7d3007fd.chunk.js",
-    "static/media/bgEvent.png": "/eventbrite/static/media/bgEvent.8f8a3e36ab461aecdbbd.png",
-    "static/media/logo.png": "/eventbrite/static/media/logo.43cde7ee93af6115a0da.png",
-    "static/media/heart.png": "/eventbrite/static/media/heart.c412cbaead4744166c20.png",
-    "static/media/location.png": "/eventbrite/static/media/location.f2734a7c417ac898ff2d.png",
-    "index.html": "/eventbrite/index.html",
-    "main.58d6cab1.css.map": "/eventbrite/static/css/main.58d6cab1.css.map",
-    "main.d823ec6a.js.map": "/eventbrite/static/js/main.d823ec6a.js.map",
-    "787.7d3007fd.chunk.js.map": "/eventbrite/static/js/787.7d3007fd.chunk.js.map"
+    "main.css": "/EventBrite/static/css/main.58d6cab1.css",
+    "main.js": "/EventBrite/static/js/main.3f483764.js",
+    "static/js/787.7d3007fd.chunk.js": "/EventBrite/static/js/787.7d3007fd.chunk.js",
+    "static/media/bgEvent.png": "/EventBrite/static/media/bgEvent.8f8a3e36ab461aecdbbd.png",
+    "static/media/logo.png": "/EventBrite/static/media/logo.43cde7ee93af6115a0da.png",
+    "static/media/heart.png": "/EventBrite/static/media/heart.c412cbaead4744166c20.png",
+    "static/media/location.png": "/EventBrite/static/media/location.f2734a7c417ac898ff2d.png",
+    "index.html": "/EventBrite/index.html",
+    "main.58d6cab1.css.map": "/EventBrite/static/css/main.58d6cab1.css.map",
+    "main.3f483764.js.map": "/EventBrite/static/js/main.3f483764.js.map",
+    "787.7d3007fd.chunk.js.map": "/EventBrite/static/js/787.7d3007fd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.58d6cab1.css",
-    "static/js/main.d823ec6a.js"
+    "static/js/main.3f483764.js"
   ]
 }
