@@ -128,7 +128,6 @@ function Browser() {
     return (
         <div className={clsx(style.wrapContainerSearchEvent, 'container-fluid')}>
             <div className={style.wrapPickLocation}>
-                <div>hhahaha {ctgActive}</div>
                 <span className={style.labelPickLocation}>Meetings In</span>
                 <img className={style.iconDropLocation} src={iconDown} alt="down" />
                 <div className={style.wrapOptions}>Thành phố Hà Nội</div>
