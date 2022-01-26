@@ -1,4 +1,3 @@
-
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header'
@@ -11,8 +10,8 @@ function App() {
     <div>
       <Header/>
       <div>
-        <Banner/>
-        <Browser/>
+          <Banner/>
+          <Browser/>
       </div>
       <Footer/>
     </div>
