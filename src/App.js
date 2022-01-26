@@ -9,8 +9,8 @@ function App() {
     <div>
       <Header/>
       <div>
-          <Banner/>
-          <Browser/>
+        <Banner/>
+        <Browser/>
       </div>
       <Footer/>
     </div>
