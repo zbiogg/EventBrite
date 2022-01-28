@@ -1,6 +1,6 @@
 import Header from '../Header'
 import Footer from '../Footer'
-import { BrowserRouter as  useParams } from 'react-router-dom'
+import { BrowserRouter as  useParams, useSearchParams } from 'react-router-dom'
 import style from './Event.module.css'
 import clsx from 'clsx';
 import iconUser from '../../assets/icons/user.png'
@@ -9,9 +9,11 @@ import iconShare from '../../assets/icons/share.png'
 import iconLocation from '../../assets/icons/location.png'
 import { useState,useEffect } from 'react';
 import {getEventInfo} from '../../services/firebase'
-function Event() {
+ Event = ({match}) => {
     const [dataEvent, setDataEvent] = useState(null);
-    const eventID = useParams().id;
+    // let {id} = useParams(); bug in here
+    // console.log(id);
+    var eventID= "1641616791_Sil";
     useEffect(() => {
        getEventInfo(eventID, data =>{
         setDataEvent(data);
