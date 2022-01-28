@@ -6,10 +6,21 @@ import iconLocation from '../../../../assets/icons/location.png'
 import imgBgEvent from '../../../../assets/img/bgEvent.png'
 import { useState,useEffect} from 'react';
 import {storage,database} from '../../../../lib/firebase'
+
 function EventItem(props) {
-    const [image, setImage] = useState(imgBgEvent);
-    const [imageCtg, setImageCtg] = useState(imgBgEvent);
-    const [colorCtg, setColorCtg] = useState('#f00');
+    const [isLoadedImage, setIsLoadedImage] = useState(false);
+    const [isLoadedIconCtg, setIsLoadedIconCtg] = useState(false);
+    const [image, setImage] = useState('');
+    const [name, setName] = useState('');
+    const [imageCtg, setImageCtg] = useState('');
+    const [colorCtg, setColorCtg] = useState('');
+    function setImageLoaded(){
+        setIsLoadedImage(true);
+        console.log("haha");
+    }
+    function setIconCtgLoaded(){
+        setIsLoadedIconCtg(true);
+    }
     useEffect(() =>{
         storage.ref("event")
         .child(props.id)
@@ -23,14 +34,19 @@ function EventItem(props) {
         database.ref("Categories").on("value",snapshot =>{
             if(snapshot.val()!==null){
                 snapshot.forEach(item =>{
-                    if(item.child("id").val()==props.categoryID){
+                    if(item.child("id").val().toString()===props.categoryID){
                         var ctgOriginID;
+                        var ctgOriginName;
                         if(item.hasChild("parent_id")){
                             ctgOriginID = item.child("parent_id").val();
+                            ctgOriginName = snapshot.child(item.child("parent_id").val()).child("name").val();
+                            setColorCtg(snapshot.child(item.child("parent_id").val()).child("color").val());
                         }else{
                             ctgOriginID = item.child("id").val();
+                            ctgOriginName = item.child("name").val();
                             setColorCtg(item.child("color").val());
                         }
+                        setName(ctgOriginName);
                         storage.ref("category")
                         .child(ctgOriginID+".png")
                         .getDownloadURL()
@@ -48,14 +64,21 @@ function EventItem(props) {
             setImage('');
             setImageCtg('')
         } 
-    },[]);
+    },[props.id,props.categoryID,props.image]);
     return (
-        <div className={clsx(style.wrapItemEvent, 'col-sm-6 col-lg-4 col-xl-3')}>
+        <div className={clsx(style.wrapItemEvent, 'col-sm-6 col-lg-4 col-xl-3')}
+        
+        >
             <div className={style.itemEvent}>
-                <div className={style.wrapImageEvent}>
-                    <img className={style.imgEvent}
+                <div className={style.wrapImageEvent}
+                style={{backgroundImage: `url(${image})`}}>
+                    {/* <img className={style.imgEvent}
                         src={image} alt="imgEvent"
-                    />
+                        onLoad={setImageLoaded}
+                        style={{display: isLoadedImage?'':'none'}}
+                        
+                    /> */}
+                   
                     <span className={style.wrapButtonFavorite}>
                         <img src={iconHeart} width="24px" height="24px" alt="favorite"/>
                     </span>
@@ -64,13 +87,13 @@ function EventItem(props) {
 
                     <div className={style.wrapCtgOfEvent}>
 
-                        <img className={clsx(style.imgCtgOfEvent)}
-                            style={{backgroundColor: colorCtg}}
-                            src = {imageCtg}
-                            width="100%" height="100%" alt="ctgImg"/>
+                        <div className={clsx(style.imgCtgOfEvent)}
+                            style={{backgroundColor: colorCtg, backgroundImage: `url(${imageCtg})`}}
+                           
+                        ></div>
 
-                        <span className={style.eventCtgName}>
-                            Game
+                        <span className={style.eventCtgName} style={{color: colorCtg}}>
+                            {name}
                         </span>
                     </div>
                     <h5 className={style.eventName}>{props.name}</h5>

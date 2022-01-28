@@ -4,9 +4,19 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background-color: #fff;
 
 }
+.wrapImageEvent >img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .wrapImageEvent{
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
     display: flex;
     position: relative;
     height: 0;
@@ -26,10 +36,13 @@
     background-color: #ff9999;
 }
 .imgCtgOfEvent{
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 30px;
     height: 30px;
     padding: 5px;
-    background-color: #ED421C;
+    background-color: #a0a0a0;
     border-radius: 30px;
 }
 .wrapEventInfo{
@@ -58,6 +71,7 @@
   -webkit-box-orient: vertical;  
   overflow: hidden;
     margin-top: 5px;
+    line-height: 1.6;
 }
 .itemEvent{
     border: 0.5px solid #e8e8e8;
@@ -74,29 +88,36 @@
 }
 .listCategory{
     display: flex;
-    height: 45px;
     padding-left: 0px;
+    margin: 20px 0;
+    overflow-x: auto;
+    column-gap: 10px;
 }
 .categoryItem{
-    height: 100%;
+    margin-bottom: 5px;
+    height: 45px;
     display: flex;
     align-items: center;
-    border-bottom: 2px;
     list-style: none;
     cursor: pointer;
 }
 .categoryName{
-    padding: 0 15px;
+    display: flex;
+    padding: 0 18px;
     font-size: 16px;
     font-weight: 600;
-    color: #424242;
+    color: #222222;
+    height: 100%;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #e8e8e8;
 }
-.wrapListCategory{
-    margin: 0 -15px;
+
+.categoryName:hover{
+    color: #fff;
+    background-color: #000;
 }
-.categoryItem:hover{
-    border-bottom: 2px solid #000;
-}
+
 .wrapBtnSeeMore{
     margin: 10px 0;
     display: flex;
@@ -125,4 +146,44 @@
         width: auto!important;
     }
 }
+.wrapPickLocation{
+    display: flex;
+    align-items: center;
+}
+.labelPickLocation{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(85, 85, 255);
+    text-transform: uppercase;
+}
+.wrapOptions{
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid #7a7979;
+}
+.iconDropLocation{
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0 5px 0 15px;
+    
+}
 
+.ctgActive{
+    background-color: #000;
+    color: #fff;
+}
+.resultListEventShimmer{
+    width: 100%;
+    color: grey;
+    display:inline-block;
+    -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+    background-repeat: no-repeat;
+    animation: resultListEventShimmer 2s infinite;
+}
+.resultListEvent{
+    /*  */
+}
+@keyframes resultListEventShimmer{
+    100% {-webkit-mask-position:left}
+}
