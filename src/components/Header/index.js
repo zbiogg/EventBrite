@@ -13,15 +13,14 @@ import announcement from '../../assets/icons/announcement.png'
 import heart from '../../assets/icons/heart.png'
 import plus from '../../assets/icons/plus.png'
 import ticket from '../../assets/icons/ticket.png'
-import user from '../../assets/icons/user.png'
-import { useState } from 'react';
+import userLogin from '../../assets/icons/user-signin.png'
 
 
 function showSearch(){
     var x = document.getElementById("search-box");
     x.style.display = "block";
-
 }
+
 
 function searchBoxClose(){
     var x = document.getElementById("search-box");
@@ -29,16 +28,16 @@ function searchBoxClose(){
 }
 
 function signIn(){
-    var x = document.getElementById("sign-in");
+    var x = document.getElementById("login");
     x.style.display = "block";
-    var y = document.getElementById("header");
+    var y = document.getElementById("header-normal");
     y.style.display = "none";
 }
 
 function logout(){
-    var x = document.getElementById("sign-in");
+    var x = document.getElementById("login");
     x.style.display = "none";
-    var y = document.getElementById("header");
+    var y = document.getElementById("header-normal");
     y.style.display = "block";
 }
 
@@ -109,7 +108,7 @@ function Header() {
                             </div>
                         </div>  
                     </div>
-                    <div className={clsx('col')}>
+                    <div className={clsx('col')} id="header-normal">
                         <ul className={clsx(style.headerNav, 'justify-content-end')}>
                             <li className={clsx(style.item, 'dropdown',style.web)}>
                                 <a className={clsx('nav-link', 'dropdown-toggle')} href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -144,22 +143,7 @@ function Header() {
                             <li className={style.item}><a className={clsx('nav-link')} onClick={signIn} href="#">Sign in</a></li>    
                         </ul>
                     </div>
-                </div>
-            </div>
-            <div className={clsx('container-fluid',style.signIn)} id="sign-in">
-                <div className={clsx('row')}>
-                    <div className={clsx('col')}>
-                        <div className={clsx('row')}>
-                            <span className={clsx('col-md-3', 'text-center', 'align-middile')}><a className={style.NavLogo} href="#"><img className={style.logoHeader} src={logo} alt=""/></a></span>
-                            <div className={clsx('col')} >
-                                <div className={style.searchNav} onClick={showSearch} role="button">
-                                    <span><img className={style.searchIcon} src={search} alt=""/></span>
-                                    <span>Click to search</span>
-                                </div>
-                            </div>
-                        </div>  
-                    </div>
-                    <div className={clsx('col')}>
+                    <div className={clsx('col', style.login)} id="login">
                         <ul className={clsx(style.headerNav, 'justify-content-end')}>
                             <li className={clsx(style.item, style.createEvent, style.web)}>
                                 <a href="#" className={clsx('nav-link')}>
@@ -186,12 +170,9 @@ function Header() {
                                 </a>
                             </li>
                             <li className={clsx(style.item , 'dropdown')}>
-                                <div className={style.userEmail}>
-                                    <a className={clsx('nav-link', 'dropdown-toggle')} href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span><img src={user} alt="" width="20px"/></span>
-                                        <span>{username}</span>
-                                    </a>
-                                </div>
+                                <a className={clsx('nav-link', 'dropdown-toggle')} href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src={userLogin} alt="" width="36px"/>  yamemoim@gmail.com
+                                </a>
                                 <div className={clsx('dropdown-menu')} aria-labelledby="navbarDropdown">
                                     <a className={clsx('dropdown-item')} href="#" onClick={logout}>Log out</a>
                                 </div>
@@ -200,6 +181,7 @@ function Header() {
                     </div>
                 </div>
             </div>
+            
         </div>
     );
 }
