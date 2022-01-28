@@ -13,6 +13,7 @@ import background from '../../assets/img/backgroud.jpg'
 import './login.css'
 export default function Login (){
     let navigate = useNavigate();
+    
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -31,19 +32,22 @@ export default function Login (){
         }),
         onSubmit: (values) => {
             database.ref("Users").on("value", snapshot =>{
-                if(snapshot.val()!==null){
-                    snapshot.forEach(user =>{
-                        if(user.child("username").val()=== values.name && user.child("password").val()=== values.password){
-                            const username = user.child("username").val()
-                            console.log(username)
-                            sessionStorage.setItem("username", username)
-                            navigate(`/`);
-                        }else{
-                            console.log("login fail")
-                        }
-                    })
-
-                }   
+                try {
+                   if(snapshot.val()!==null){
+                        snapshot.forEach(user =>{
+                            if(user.child("username").val()=== values.name && user.child("password").val()=== values.password){
+                                const username = user.val()
+                                console.log(username)
+                                sessionStorage.setItem("username", username)
+                                navigate(`/`);
+                            }else{
+                                console.log("login fail")
+                            }
+                        })
+                    } 
+                } catch (error) {
+                    console.log(error)
+                }  
             })
             console.log(values);
         },
