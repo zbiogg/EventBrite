@@ -22,7 +22,7 @@ function Browser() {
             active: false,
         }));
        
-        const index = listCtg.findIndex(newList => newList.id==id);
+        const index = listCtg.findIndex(newList => newList.id===id);
         newList[index].active = true;
         setCtgActive(id);
         getEventByCategory(id);
@@ -38,13 +38,13 @@ function Browser() {
             if(snapshot.val()!==null){
                 snapshot.forEach(item =>{
                     if(item.child("type").val()==="event"){
-                        if(categoryID==0){
+                        if(categoryID===0){
                             setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
                             if(item.child("location").val().includes("Thành phố Hà Nội")){
                                 setListEventCity(listEventCity => [...listEventCity, item.val()]);
                             }  
                         }else{
-                            if(item.child("category_id").val()==categoryID){
+                            if(item.child("category_id").val()===categoryID){
                                 setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
                                 if(item.child("location").val().includes("Thành phố Hà Nội")){
                                     setListEventCity(listEventCity => [...listEventCity, item.val()]);
@@ -52,8 +52,8 @@ function Browser() {
                             }
                             database.ref("Categories").on("value",snapctg =>{
                                 snapctg.forEach(ctg =>{
-                                    if(ctg.hasChild("parent_id")&&ctg.child("parent_id").val()==categoryID){
-                                        if(item.child("category_id").val()==ctg.child("id").val()){
+                                    if(ctg.hasChild("parent_id")&&ctg.child("parent_id").val()===categoryID){
+                                        if(item.child("category_id").val()===ctg.child("id").val()){
                                             setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
                                             if(item.child("location").val().includes("Thành phố Hà Nội")){
                                                 setListEventCity(listEventCity => [...listEventCity, item.val()]);

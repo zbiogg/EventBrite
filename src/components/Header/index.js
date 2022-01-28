@@ -121,7 +121,7 @@ function Header() {
                         </div>
                     </li>
                     <li className={clsx(style.item, style.createEvent, style.web)}><a href="#" className={clsx('nav-link')} role="button">Create an event</a></li>
-                    <li className={style.item}><a className={clsx('nav-link')} role="button" href="#">Sign in</a></li>    
+                    <li className={style.item}><a className={clsx('nav-link')} role="button" href="/login">Sign in</a></li>    
                 </ul>
             </div>
         </div>
