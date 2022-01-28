@@ -1,5 +1,6 @@
-import HomePage from './pages/Home';
+import HomePage from './pages/HomePage';
 import Test from './components/Footer/test';
+import EventPage from './pages/EventPage';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/test" element={<Test/>} />
+        <Route path="/event/:id/*" element={<EventPage/>} />
       </Routes>
     </Router>
     

@@ -7,6 +7,7 @@
     background-color: #fff;
 
 }
+
 .wrapImageEvent >img{
     position: absolute;
     width: 100%;
@@ -33,7 +34,7 @@
     background-color: #fff;
 }
 .wrapButtonFavorite:hover{
-    background-color: #ff9999;
+    background-color: #dbdbdb;
 }
 .imgCtgOfEvent{
     background-size: 70%;
@@ -54,6 +55,7 @@
  display: flex;
   align-items: center;
   column-gap: 10px;
+  margin: 5px 0;
 }
 .wrapCtgOfEvent{
     display: flex;
@@ -63,7 +65,7 @@
 .eventCtgName{
     color: #ED421C;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
 }
 .eventName{
     display: -webkit-box;
@@ -72,6 +74,7 @@
   overflow: hidden;
     margin-top: 5px;
     line-height: 1.6;
+    font-weight: 600;
 }
 .itemEvent{
     border: 0.5px solid #e8e8e8;
@@ -82,6 +85,11 @@
 }
 .wrapItemEvent{
     padding: 15px;
+    color: #000;
+}
+.wrapItemEvent:hover{
+    text-decoration: none;
+    color: #000;
 }
 .itemEvent:hover{
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;

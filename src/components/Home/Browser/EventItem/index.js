@@ -3,75 +3,81 @@ import clsx from 'clsx';
 import iconHeart from '../../../../assets/icons/heart.png'
 import iconUser from '../../../../assets/icons/user.png'
 import iconLocation from '../../../../assets/icons/location.png'
-import imgBgEvent from '../../../../assets/img/bgEvent.png'
 import { useState,useEffect} from 'react';
 import {storage,database} from '../../../../lib/firebase'
+import {Link} from 'react-router-dom'
+import {getEventInfo} from '../../../../services/firebase'
 
 function EventItem(props) {
-    const [isLoadedImage, setIsLoadedImage] = useState(false);
-    const [isLoadedIconCtg, setIsLoadedIconCtg] = useState(false);
+    // const [isLoadedImage, setIsLoadedImage] = useState(false);
+    // const [isLoadedIconCtg, setIsLoadedIconCtg] = useState(false);
+    const [dataEvent, setDataEvent] = useState(null);
     const [image, setImage] = useState('');
     const [name, setName] = useState('');
     const [imageCtg, setImageCtg] = useState('');
     const [colorCtg, setColorCtg] = useState('');
-    function setImageLoaded(){
-        setIsLoadedImage(true);
-        console.log("haha");
-    }
-    function setIconCtgLoaded(){
-        setIsLoadedIconCtg(true);
-    }
+    // function setImageLoaded(){
+    //     setIsLoadedImage(true);
+    // }
+    // function setIconCtgLoaded(){
+    //     setIsLoadedIconCtg(true);
+    // }
     useEffect(() =>{
-        storage.ref("event")
-        .child(props.id)
-        .child("background")
-        .child(props.image)
-        .getDownloadURL()
-        .then((url) =>{
-            setImage(url);
-        });
+        getEventInfo(props.id, data =>{
+            setDataEvent(data);
+           });
+        // storage.ref("event")
+        // .child(props.id)
+        // .child("background")
+        // .child(props.image)
+        // .getDownloadURL()
+        // .then((url) =>{
+        //     setImage(url);
+        // });
 
-        database.ref("Categories").on("value",snapshot =>{
-            if(snapshot.val()!==null){
-                snapshot.forEach(item =>{
-                    if(item.child("id").val().toString()===props.categoryID){
-                        var ctgOriginID;
-                        var ctgOriginName;
-                        if(item.hasChild("parent_id")){
-                            ctgOriginID = item.child("parent_id").val();
-                            ctgOriginName = snapshot.child(item.child("parent_id").val()).child("name").val();
-                            setColorCtg(snapshot.child(item.child("parent_id").val()).child("color").val());
-                        }else{
-                            ctgOriginID = item.child("id").val();
-                            ctgOriginName = item.child("name").val();
-                            setColorCtg(item.child("color").val());
-                        }
-                        setName(ctgOriginName);
-                        storage.ref("category")
-                        .child(ctgOriginID+".png")
-                        .getDownloadURL()
-                        .then((url) =>{
-                            setImageCtg(url);
-                        });
-                    }
-                });
-            }
+        // database.ref("Categories").on("value",snapshot =>{
+        //     if(snapshot.val()!==null){
+        //         snapshot.forEach(item =>{
+        //             if(item.child("id").val().toString()===props.categoryID){
+        //                 var ctgOriginID;
+        //                 var ctgOriginName;
+        //                 if(item.hasChild("parent_id")){
+        //                     ctgOriginID = item.child("parent_id").val();
+        //                     ctgOriginName = snapshot.child(item.child("parent_id").val()).child("name").val();
+        //                     setColorCtg(snapshot.child(item.child("parent_id").val()).child("color").val());
+        //                 }else{
+        //                     ctgOriginID = item.child("id").val();
+        //                     ctgOriginName = item.child("name").val();
+        //                     setColorCtg(item.child("color").val());
+        //                 }
+        //                 setName(ctgOriginName);
+        //                 storage.ref("category")
+        //                 .child(ctgOriginID+".png")
+        //                 .getDownloadURL()
+        //                 .then((url) =>{
+        //                     setImageCtg(url);
+        //                 });
+        //             }
+        //         });
+        //     }
             
-        });
+        // });
 
         
         return () =>{
-            setImage('');
-            setImageCtg('')
+            // setImage('');
+            // setImageCtg('')
+            setDataEvent(null);
         } 
     },[props.id,props.categoryID,props.image]);
     return (
-        <div className={clsx(style.wrapItemEvent, 'col-sm-6 col-lg-4 col-xl-3')}
+        
+        <Link to={"event/"+props.id} className={clsx(style.wrapItemEvent, 'col-sm-6 col-lg-4 col-xl-3')}
         
         >
             <div className={style.itemEvent}>
                 <div className={style.wrapImageEvent}
-                style={{backgroundImage: `url(${image})`}}>
+                style={{backgroundImage: `url(${dataEvent?dataEvent.imageUrl:''})`}}>
                     {/* <img className={style.imgEvent}
                         src={image} alt="imgEvent"
                         onLoad={setImageLoaded}
@@ -88,26 +94,27 @@ function EventItem(props) {
                     <div className={style.wrapCtgOfEvent}>
 
                         <div className={clsx(style.imgCtgOfEvent)}
-                            style={{backgroundColor: colorCtg, backgroundImage: `url(${imageCtg})`}}
+                            style={{backgroundColor: dataEvent?dataEvent.ctgColor:'', backgroundImage: `url(${dataEvent?dataEvent.ctgIconUrl:''})`}}
                            
                         ></div>
 
-                        <span className={style.eventCtgName} style={{color: colorCtg}}>
-                            {name}
+                        <span className={style.eventCtgName} style={{color: dataEvent?dataEvent.ctgColor:''}}>
+                            {dataEvent?dataEvent.ctgOriginName:''}
                         </span>
                     </div>
-                    <h5 className={style.eventName}>{props.name}</h5>
+                    <h5 className={style.eventName}>{dataEvent?dataEvent.name:''}</h5>
                     <div className={style.wrapEventMember}>
                         <img src={iconUser} width="16px" height="16px" alt="member" />
-                        <span>{props.member} người</span>
+                        <span>{dataEvent?dataEvent.quantity:''} người</span>
                     </div>
                     <div className={style.wrapEventLocation}>
                         <img src={iconLocation} width="16px" height="16px" alt="location"/>
-                        <span>{props.location.substring(0,props.location.indexOf("("))}</span>
+                        <span>{dataEvent?dataEvent.location.substring(0,props.location.indexOf("(")):''}</span>
                     </div>
                 </div>
             </div>
-        </div>
+           
+        </Link>
     );
 }
 

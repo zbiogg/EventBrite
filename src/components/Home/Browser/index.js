@@ -15,19 +15,19 @@ function Browser() {
         "name": "All",
         "active": true
     }]);
-    
+
     const [listEventNationWide, setListEventNationWide] = useState([]);
     const [listEventCity, setListEventCity] = useState([]);
- 
+
     function getActive(id) {
         const newList = listCtg.map((ctg) => ({
             ...ctg,
             active: false,
         }));
 
-        const index = listCtg.findIndex(newList => newList.id == id);
+        const index = listCtg.findIndex(newList => newList.id.toString() === id.toString());
         newList[index].active = true;
-       
+
         getEventByCategory(id);
         setListCtg(newList);
 
@@ -40,13 +40,13 @@ function Browser() {
             if (snapshot.val() !== null) {
                 snapshot.forEach(item => {
                     if (item.child("type").val() === "event") {
-                        if (categoryID == 0) {
+                        if (categoryID.toString() === "0") {
                             setListEventNationWide(listEventNationWide => [...listEventNationWide, item.val()]);
                             if (item.child("location").val().includes("Thành phố Hà Nội")) {
                                 setListEventCity(listEventCity => [...listEventCity, item.val()]);
                             }
                         } else {
-                            if (item.child("category_id").val() == categoryID) {
+                            if (item.child("category_id").val().toString() === categoryID.toString()) {
                                 setListEventNationWide(listEventNationWide => [...listEventNationWide, item.val()]);
                                 if (item.child("location").val().includes("Thành phố Hà Nội")) {
                                     setListEventCity(listEventCity => [...listEventCity, item.val()]);
@@ -54,8 +54,8 @@ function Browser() {
                             }
                             database.ref("Categories").on("value", snapctg => {
                                 snapctg.forEach(ctg => {
-                                    if (ctg.hasChild("parent_id") && ctg.child("parent_id").val() == categoryID) {
-                                        if (item.child("category_id").val() == ctg.child("id").val()) {
+                                    if (ctg.hasChild("parent_id") && ctg.child("parent_id").val().toString() === categoryID.toString()) {
+                                        if (item.child("category_id").val().toString() === ctg.child("id").val().toString()) {
                                             setListEventNationWide(listEventNationWide => [...listEventNationWide, item.val()]);
                                             if (item.child("location").val().includes("Thành phố Hà Nội")) {
                                                 setListEventCity(listEventCity => [...listEventCity, item.val()]);
@@ -70,8 +70,8 @@ function Browser() {
                         setIsShowShimmerEvent(true);
                         setTimeout(() => {
                             setIsShowShimmerEvent(false);
-                          }, 3000);
-                        
+                        }, 2000);
+
                     }
 
                 });
@@ -86,7 +86,7 @@ function Browser() {
     useEffect(() => {
         setTimeout(() => {
             setIsShowShimmerEvent(false);
-          }, 3000);
+        }, 3300);
         database.ref("Categories").on("value", snapshot => {
             if (snapshot.val() !== null) {
                 snapshot.forEach(item => {
@@ -156,7 +156,7 @@ function Browser() {
                 </ul>
 
             </div>
-            <div className={style.resultListEvent} style={{display: isShowShimmerEvent?'none':''}}>
+            <div className={style.resultListEvent} style={{ display: isShowShimmerEvent ? 'none' : '' }}>
                 <div className={style.resultEventLocation}>
                     <h4 className={style.titleResultEvent}>MEETING IN THÀNH PHỐ HÀ NỘI</h4>
                     <div className={clsx(style.wrapListEvent, 'row')}>
@@ -203,12 +203,12 @@ function Browser() {
 
 
             </div>
-            <div className={style.resultListEventShimmer} style={{display: isShowShimmerEvent?'':'none'}}>
+            <div className={style.resultListEventShimmer} style={{ display: isShowShimmerEvent ? '' : 'none' }}>
                 <div className={clsx(style.wrapListEvent, 'row')}>
-                    <ShimmerEventItem/>
-                    <ShimmerEventItem/>
-                    <ShimmerEventItem/>
-                    <ShimmerEventItem/>
+                    <ShimmerEventItem />
+                    <ShimmerEventItem />
+                    <ShimmerEventItem />
+                    <ShimmerEventItem />
                 </div>
             </div>
         </div>

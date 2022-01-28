@@ -1,7 +1,7 @@
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Banner from '../components/Home/Banner'
-import Browser from '../components/Home/Browser'
+import Header from '../Header'
+import Footer from '../Footer'
+import Banner from '../Home/Banner'
+import Browser from '../Home/Browser'
 function Home() {
   return (
         <div>

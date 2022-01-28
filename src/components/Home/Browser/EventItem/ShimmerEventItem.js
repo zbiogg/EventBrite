@@ -15,7 +15,7 @@ function ShimmerEventItem() {
                     <span style={{width: '50%', height:'20px', backgroundColor: '#a0a0a0'}}>  
                     </span>
                 </div>
-                <div style={{width: '90%', height:'20px', backgroundColor: "#a0a0a0", marginTop:'15px'}}></div>
+                <div style={{width: '100%', height:'20px', backgroundColor: "#a0a0a0", marginTop:'15px'}}></div>
                 <div style={{width: '80%', height:'20px', backgroundColor: "#a0a0a0", marginTop:'15px'}}></div>
                 <div style={{width: '60%', height:'20px', backgroundColor: "#a0a0a0", marginTop:'15px'}}></div>
             </div>
