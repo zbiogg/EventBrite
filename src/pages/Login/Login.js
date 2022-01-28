@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import clsx from 'clsx';
 import { useState,useEffect} from 'react';
+import { useNavigate  } from "react-router-dom"
 import {useFormik} from 'formik'
 import * as Yup from "yup";
 import Footer from '../../components/Footer/index'
@@ -9,56 +12,47 @@ import logo from '../../assets/logo.png'
 import background from '../../assets/img/backgroud.jpg'
 import './login.css'
 export default function Login (){
-    const [userName , setUsername] = useState()
-    const [passWord, setPassWord] = useState()
-
+    let navigate = useNavigate();
     const formik = useFormik({
-    initialValues: {
-      email: "",
-      name: "",
-      phone: "",
-      password: "",
-      confirmedPassword: "",
-    },
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .required("Required")
-        .min(4, "Must be 4 characters or more"),
-      password: Yup.string()
-        .required("Required")
-        .matches(
-          /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/,
-          "Password must be 7-19 characters and contain at least one letter, one number and a special character"
-        ),
-    }),
-    onSubmit: (values) => {
-      window.alert("Form submitted");
-      console.log(values);
-    },
-  });
-
-    useEffect(() => {
-        function getLogin(){
+        initialValues: {
+            name: "",
+            password: "",
+        },
+        validationSchema: Yup.object({
+            name: Yup.string()
+                .required("Required")
+                .min(4, "Must be 4 characters or more"),
+            password: Yup.string()
+                .required("Required")
+                // .matches(
+                // /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/,
+                // "Password must be 7-19 characters and contain at least one letter, one number and a special character"
+                // ),
+        }),
+        onSubmit: (values) => {
             database.ref("Users").on("value", snapshot =>{
                 if(snapshot.val()!==null){
                     snapshot.forEach(user =>{
-                        if(user.child("username").val()=== userName || user.child("password").val()=== passWord){
-
+                        if(user.child("username").val()=== values.name && user.child("password").val()=== values.password){
+                            const username = user.child("username").val()
+                            console.log(username)
+                            sessionStorage.setItem("username", username)
+                            navigate(`/`);
                         }else{
-                            
+                            console.log("login fail")
                         }
                     })
 
                 }   
             })
-        }
-        getLogin()
+            console.log(values);
+        },
+  });
 
-    })
     return(
     <>
         <div className={clsx('container-fluid')}>
-        <div className="row">
+            <div className="row">
                 <div className="col-sm-12 col-md-6" >
                     <div style={{ justifyContent: "center" ,display: "flex"}}>
                         <form className="infoform" onSubmit={formik.handleSubmit}>
@@ -66,7 +60,6 @@ export default function Login (){
                             <h1 >Log in</h1>
                             <label> Your name </label>
                             <input
-                                style={{width: 400}}
                                 type="text"
                                 id="name"
                                 name="name"

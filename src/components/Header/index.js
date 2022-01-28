@@ -14,6 +14,7 @@ import heart from '../../assets/icons/heart.png'
 import plus from '../../assets/icons/plus.png'
 import ticket from '../../assets/icons/ticket.png'
 import user from '../../assets/icons/user.png'
+import { useState } from 'react';
 
 
 function showSearch(){
@@ -42,6 +43,7 @@ function logout(){
 }
 
 function Header() {
+    let username = sessionStorage.getItem('username');
     return (
         <div>
             <div className={style.searchBox} id="search-box">
@@ -187,7 +189,7 @@ function Header() {
                                 <div className={style.userEmail}>
                                     <a className={clsx('nav-link', 'dropdown-toggle')} href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span><img src={user} alt="" width="20px"/></span>
-                                        <span>yamemoim@gmail.com</span>
+                                        <span>{username}</span>
                                     </a>
                                 </div>
                                 <div className={clsx('dropdown-menu')} aria-labelledby="navbarDropdown">
