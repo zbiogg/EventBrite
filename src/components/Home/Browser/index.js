@@ -24,13 +24,8 @@ function Browser() {
             ...ctg,
             active: false,
         }));
-<<<<<<< HEAD
-       
-        const index = listCtg.findIndex(newList => newList.id===id);
-=======
 
         const index = listCtg.findIndex(newList => newList.id == id);
->>>>>>> 37a1485f5a5b5bbd03b824a8f5bbfbad69e5ade3
         newList[index].active = true;
        
         getEventByCategory(id);
@@ -41,21 +36,6 @@ function Browser() {
     function getEventByCategory(categoryID) {
         setListEventNationWide([]);
         setListEventCity([]);
-<<<<<<< HEAD
-        database.ref("Events").on("value",snapshot =>{
-            if(snapshot.val()!==null){
-                snapshot.forEach(item =>{
-                    if(item.child("type").val()==="event"){
-                        if(categoryID===0){
-                            setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
-                            if(item.child("location").val().includes("Thành phố Hà Nội")){
-                                setListEventCity(listEventCity => [...listEventCity, item.val()]);
-                            }  
-                        }else{
-                            if(item.child("category_id").val()===categoryID){
-                                setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
-                                if(item.child("location").val().includes("Thành phố Hà Nội")){
-=======
         database.ref("Events").on("value", snapshot => {
             if (snapshot.val() !== null) {
                 snapshot.forEach(item => {
@@ -69,25 +49,15 @@ function Browser() {
                             if (item.child("category_id").val() == categoryID) {
                                 setListEventNationWide(listEventNationWide => [...listEventNationWide, item.val()]);
                                 if (item.child("location").val().includes("Thành phố Hà Nội")) {
->>>>>>> 37a1485f5a5b5bbd03b824a8f5bbfbad69e5ade3
                                     setListEventCity(listEventCity => [...listEventCity, item.val()]);
                                 }
                             }
-<<<<<<< HEAD
-                            database.ref("Categories").on("value",snapctg =>{
-                                snapctg.forEach(ctg =>{
-                                    if(ctg.hasChild("parent_id")&&ctg.child("parent_id").val()===categoryID){
-                                        if(item.child("category_id").val()===ctg.child("id").val()){
-                                            setListEventNationWide(listEventNationWide =>[...listEventNationWide, item.val()]);
-                                            if(item.child("location").val().includes("Thành phố Hà Nội")){
-=======
                             database.ref("Categories").on("value", snapctg => {
                                 snapctg.forEach(ctg => {
                                     if (ctg.hasChild("parent_id") && ctg.child("parent_id").val() == categoryID) {
                                         if (item.child("category_id").val() == ctg.child("id").val()) {
                                             setListEventNationWide(listEventNationWide => [...listEventNationWide, item.val()]);
                                             if (item.child("location").val().includes("Thành phố Hà Nội")) {
->>>>>>> 37a1485f5a5b5bbd03b824a8f5bbfbad69e5ade3
                                                 setListEventCity(listEventCity => [...listEventCity, item.val()]);
                                             }
                                         }

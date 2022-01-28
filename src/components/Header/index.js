@@ -157,44 +157,6 @@ function Header() {
                             </div>
                         </div>  
                     </div>
-<<<<<<< HEAD
-                </div>  
-            </div>
-            <div className={clsx('col')}>
-                <ul className={clsx(style.headerNav, 'justify-content-end')}>
-                    <li className={clsx(style.item, 'dropdown',style.web)}>
-                        <a className={clsx('nav-link', 'dropdown-toggle')} href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Organize
-                        </a>
-                        <div className={clsx('dropdown-menu')} aria-labelledby="navbarDropdown">
-                            <a className={clsx('dropdown-item')} href="#">Why Yamemoim?</a>
-                            <a className={clsx('dropdown-item')} href="#">Pricing</a>
-                        </div>
-                    </li>
-                    <li className={clsx(style.item, 'dropdown',style.web)}>
-                        <a className={clsx('nav-link', 'dropdown-toggle')} href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Help
-                        </a>
-                        <div className={clsx('dropdown-menu')} aria-labelledby="navbarDropdown">
-                            <a className={clsx('dropdown-item')} href="#">Action</a>
-                            <a className={clsx('dropdown-item')} href="#">Another action</a>
-                        </div>
-                    </li>
-                    <li className={clsx(style.item, style.mobile)}><a><span><img role="button" onClick={showSearch} src={search} alt="" width="20px"/></span></a></li>
-                    <li className={clsx(style.item, 'dropdown', style.mobile)}>
-                        <a className={clsx('nav-link')} href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><img src={more} style={{width: 20}} alt=""/></span>
-                        </a>
-                        <div className={clsx('dropdown-menu')} aria-labelledby="navbarDropdown">
-                            <a className={clsx('dropdown-item')} href="#">Organize</a>
-                            <a className={clsx('dropdown-item')} href="#">Help</a>
-                            <a className={clsx('dropdown-item', style.createEvent)} href="#">Create an event</a>
-                        </div>
-                    </li>
-                    <li className={clsx(style.item, style.createEvent, style.web)}><a href="#" className={clsx('nav-link')} role="button">Create an event</a></li>
-                    <li className={style.item}><a className={clsx('nav-link')} role="button" href="/login">Sign in</a></li>    
-                </ul>
-=======
                     <div className={clsx('col')}>
                         <ul className={clsx(style.headerNav, 'justify-content-end')}>
                             <li className={clsx(style.item, style.createEvent, style.web)}>
@@ -235,7 +197,6 @@ function Header() {
                         </ul>
                     </div>
                 </div>
->>>>>>> 37a1485f5a5b5bbd03b824a8f5bbfbad69e5ade3
             </div>
         </div>
     );
