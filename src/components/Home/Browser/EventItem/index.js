@@ -8,10 +8,19 @@ import { useState,useEffect} from 'react';
 import {storage,database} from '../../../../lib/firebase'
 
 function EventItem(props) {
-    const [image, setImage] = useState(imgBgEvent);
+    const [isLoadedImage, setIsLoadedImage] = useState(false);
+    const [isLoadedIconCtg, setIsLoadedIconCtg] = useState(false);
+    const [image, setImage] = useState('');
     const [name, setName] = useState('');
-    const [imageCtg, setImageCtg] = useState(iconHeart);
+    const [imageCtg, setImageCtg] = useState('');
     const [colorCtg, setColorCtg] = useState('');
+    function setImageLoaded(){
+        setIsLoadedImage(true);
+        console.log("haha");
+    }
+    function setIconCtgLoaded(){
+        setIsLoadedIconCtg(true);
+    }
     useEffect(() =>{
         storage.ref("event")
         .child(props.id)
@@ -57,12 +66,18 @@ function EventItem(props) {
         } 
     },[props.id,props.categoryID,props.image]);
     return (
-        <div className={clsx(style.wrapItemEvent, 'col-sm-6 col-lg-4 col-xl-3')}>
+        <div className={clsx(style.wrapItemEvent, 'col-sm-6 col-lg-4 col-xl-3')}
+        
+        >
             <div className={style.itemEvent}>
-                <div className={style.wrapImageEvent}>
-                    <img className={style.imgEvent}
+                <div className={style.wrapImageEvent}
+                style={{backgroundImage: `url(${image})`}}>
+                    {/* <img className={style.imgEvent}
                         src={image} alt="imgEvent"
-                    />
+                        onLoad={setImageLoaded}
+                        style={{display: isLoadedImage?'':'none'}}
+                        
+                    /> */}
                    
                     <span className={style.wrapButtonFavorite}>
                         <img src={iconHeart} width="24px" height="24px" alt="favorite"/>
@@ -72,10 +87,10 @@ function EventItem(props) {
 
                     <div className={style.wrapCtgOfEvent}>
 
-                        <img className={clsx(style.imgCtgOfEvent)}
-                            style={{backgroundColor: colorCtg}}
-                            src = {imageCtg}
-                            width="100%" height="100%" alt="ctgImg"/>
+                        <div className={clsx(style.imgCtgOfEvent)}
+                            style={{backgroundColor: colorCtg, backgroundImage: `url(${imageCtg})`}}
+                           
+                        ></div>
 
                         <span className={style.eventCtgName} style={{color: colorCtg}}>
                             {name}

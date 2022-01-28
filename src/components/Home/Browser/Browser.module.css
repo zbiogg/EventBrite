@@ -14,6 +14,9 @@
     object-fit: cover;
 }
 .wrapImageEvent{
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
     display: flex;
     position: relative;
     height: 0;
@@ -33,10 +36,13 @@
     background-color: #ff9999;
 }
 .imgCtgOfEvent{
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 30px;
     height: 30px;
     padding: 5px;
-    background-color: #ED421C;
+    background-color: #a0a0a0;
     border-radius: 30px;
 }
 .wrapEventInfo{
@@ -167,4 +173,17 @@
     background-color: #000;
     color: #fff;
 }
-
+.resultListEventShimmer{
+    width: 100%;
+    color: grey;
+    display:inline-block;
+    -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+    background-repeat: no-repeat;
+    animation: resultListEventShimmer 2s infinite;
+}
+.resultListEvent{
+    /*  */
+}
+@keyframes resultListEventShimmer{
+    100% {-webkit-mask-position:left}
+}
