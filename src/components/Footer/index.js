@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {Link} from 'react-router-dom'
-import Test from './test';
+import clsx from 'clsx';
 import styles from './Footer.module.css'
 
 function Footer() {
     return (
         <div>
             <footer className={styles.siteFooter}>
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-sm-3 col-md-3">
+                <div className={clsx('container-fluid')}>
+                    <div className={clsx('row')}>
+                        <div className={clsx('col-sm-3 col-md-3')}>
                             <h6>Use Eventbrite</h6>
                             <ul className={styles.footerLinks}>
                                 <li><a href="#">How It Works</a></li>
@@ -26,7 +26,7 @@ function Footer() {
                             </ul>
                         </div>
 
-                        <div className="col-xs-3 col-md-3">
+                        <div className={clsx('col-sm-3 col-md-3')}>
                             <h6>Plan Events</h6>
                             <ul className={styles.footerLinks}>
                                 <li><a href="#">Conferences</a></li>
@@ -35,13 +35,13 @@ function Footer() {
                                 <li><a href="#">Reunions</a></li>
                                 <li><a href="#">Sell Tickets</a></li>
                                 <li><a href="#">Event Management & Planning</a></li>
-                                <li><a href="#">Event Registration</a></li>
+                                <li><a href="#">Event Registration</a></li>                     
                                 <li><a href="#">Online RSVP</a></li>
 
                             </ul>
                         </div>
 
-                        <div className="col-xs-3 col-md-3">
+                        <div className={clsx('col-sm-3 col-md-3')}>
                             <h6>Find Events</h6>
                             <ul className={styles.footerLinks}>
                                 <li><a href="#">Things to do in Toronto</a></li>
@@ -56,7 +56,7 @@ function Footer() {
                                 <li><a href="#">All Cities</a></li>
                             </ul>
                         </div>
-                        <div className="col-xs-3 col-md-3">
+                        <div className={clsx('col-sm-3 col-md-3')}>
                             <h6>Connect With Us</h6>
                             <ul className={styles.footerLinks}>
                                 <li><a href="#">Contact Support</a></li>
@@ -69,13 +69,13 @@ function Footer() {
                     </div>
                     <hr/>
                 </div>
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-xs-2 col-md-2">
+                <div className={clsx('container-fluid')}>
+                    <div className={clsx('row')}>
+                        <div className={clsx('col-xs-2 col-md-2')}>
                             <p>© 2022 Eventbrite</p>
                         </div>
 
-                        <div className="col-xs-8 col-md-8">
+                        <div className={clsx('col-xs-8 col-md-8')}>
                             <ul className={styles.EffectLink} >
                                 <li><Link to="/test">About</Link></li>
                                 <li><a href="#">Blog</a></li>
@@ -91,7 +91,7 @@ function Footer() {
                                 <li><a href="#">Cookies</a></li>
                             </ul>
                         </div>
-                        <div className="col-xs-2 col-md-2">
+                        <div className={clsx('col-xs-2 col-md-2')}>
                             <select name="cars" id="cars" style={{backgroundColor:'#33353d',color:'rgb(255,255,255)'}}>
                                 <option value="volvo">Canada(EN)</option>
                                 <option value="saab">South Korea</option>
