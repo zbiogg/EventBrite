@@ -36,6 +36,7 @@ function Browser() {
     function getEventByCategory(categoryID) {
         setListEventNationWide([]);
         setListEventCity([]);
+        setIsShowShimmerEvent(true);
         database.ref("Events").on("value", snapshot => {
             if (snapshot.val() !== null) {
                 snapshot.forEach(item => {
@@ -45,12 +46,14 @@ function Browser() {
                             if (item.child("location").val().includes("Thành phố Hà Nội")) {
                                 setListEventCity(listEventCity => [...listEventCity, item.val()]);
                             }
+                            
                         } else {
                             if (item.child("category_id").val().toString() === categoryID.toString()) {
                                 setListEventNationWide(listEventNationWide => [...listEventNationWide, item.val()]);
                                 if (item.child("location").val().includes("Thành phố Hà Nội")) {
                                     setListEventCity(listEventCity => [...listEventCity, item.val()]);
                                 }
+                                
                             }
                             database.ref("Categories").on("value", snapctg => {
                                 snapctg.forEach(ctg => {
@@ -60,6 +63,7 @@ function Browser() {
                                             if (item.child("location").val().includes("Thành phố Hà Nội")) {
                                                 setListEventCity(listEventCity => [...listEventCity, item.val()]);
                                             }
+                                            
                                         }
 
                                     }
@@ -67,10 +71,11 @@ function Browser() {
 
                             });
                         }
-                        setIsShowShimmerEvent(true);
+                        
+                       
                         setTimeout(() => {
                             setIsShowShimmerEvent(false);
-                        }, 2000);
+                        }, 1000);
 
                     }
 
@@ -84,9 +89,6 @@ function Browser() {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setIsShowShimmerEvent(false);
-        }, 3300);
         database.ref("Categories").on("value", snapshot => {
             if (snapshot.val() !== null) {
                 snapshot.forEach(item => {
@@ -112,6 +114,7 @@ function Browser() {
                         if (item.child("location").val().includes("Thành phố Hà Nội")) {
                             setListEventCity(listEventCity => [...listEventCity, item.val()]);
                         }
+                        setIsShowShimmerEvent(false);
                     }
 
                 });

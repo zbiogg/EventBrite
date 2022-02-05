@@ -2,71 +2,22 @@ import style from '../../Browser/Browser.module.css'
 import clsx from 'clsx';
 import iconHeart from '../../../../assets/icons/heart.png'
 import iconUser from '../../../../assets/icons/user.png'
+import imgBgEvent from '../../../../assets/img/bgEvent.png'
 import iconLocation from '../../../../assets/icons/location.png'
 import { useState,useEffect} from 'react';
-import {storage,database} from '../../../../lib/firebase'
 import {Link} from 'react-router-dom'
 import {getEventInfo} from '../../../../services/firebase'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function EventItem(props) {
-    // const [isLoadedImage, setIsLoadedImage] = useState(false);
-    // const [isLoadedIconCtg, setIsLoadedIconCtg] = useState(false);
     const [dataEvent, setDataEvent] = useState(null);
-    const [image, setImage] = useState('');
-    const [name, setName] = useState('');
-    const [imageCtg, setImageCtg] = useState('');
-    const [colorCtg, setColorCtg] = useState('');
-    // function setImageLoaded(){
-    //     setIsLoadedImage(true);
-    // }
-    // function setIconCtgLoaded(){
-    //     setIsLoadedIconCtg(true);
-    // }
     useEffect(() =>{
         getEventInfo(props.id, data =>{
             setDataEvent(data);
            });
-        // storage.ref("event")
-        // .child(props.id)
-        // .child("background")
-        // .child(props.image)
-        // .getDownloadURL()
-        // .then((url) =>{
-        //     setImage(url);
-        // });
 
-        // database.ref("Categories").on("value",snapshot =>{
-        //     if(snapshot.val()!==null){
-        //         snapshot.forEach(item =>{
-        //             if(item.child("id").val().toString()===props.categoryID){
-        //                 var ctgOriginID;
-        //                 var ctgOriginName;
-        //                 if(item.hasChild("parent_id")){
-        //                     ctgOriginID = item.child("parent_id").val();
-        //                     ctgOriginName = snapshot.child(item.child("parent_id").val()).child("name").val();
-        //                     setColorCtg(snapshot.child(item.child("parent_id").val()).child("color").val());
-        //                 }else{
-        //                     ctgOriginID = item.child("id").val();
-        //                     ctgOriginName = item.child("name").val();
-        //                     setColorCtg(item.child("color").val());
-        //                 }
-        //                 setName(ctgOriginName);
-        //                 storage.ref("category")
-        //                 .child(ctgOriginID+".png")
-        //                 .getDownloadURL()
-        //                 .then((url) =>{
-        //                     setImageCtg(url);
-        //                 });
-        //             }
-        //         });
-        //     }
-            
-        // });
-
-        
         return () =>{
-            // setImage('');
-            // setImageCtg('')
             setDataEvent(null);
         } 
     },[props.id,props.categoryID,props.image]);
@@ -77,13 +28,13 @@ function EventItem(props) {
         >
             <div className={style.itemEvent}>
                 <div className={style.wrapImageEvent}
-                style={{backgroundImage: `url(${dataEvent?dataEvent.imageUrl:''})`}}>
-                    {/* <img className={style.imgEvent}
-                        src={image} alt="imgEvent"
-                        onLoad={setImageLoaded}
-                        style={{display: isLoadedImage?'':'none'}}
-                        
-                    /> */}
+                // style={{backgroundImage: `url(${imgBgEvent})`}}
+                >
+                    <LazyLoadImage
+                    style={{display: dataEvent?dataEvent.bgUrl?'block':'none':''}}
+                    className={style.imgEvent}
+                    effect="blur"
+                    src={dataEvent?dataEvent.bgUrl:''} />
                    
                     <span className={style.wrapButtonFavorite}>
                         <img src={iconHeart} width="24px" height="24px" alt="favorite"/>
